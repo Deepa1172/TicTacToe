@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+	<style >
+		h2 {
+			line-height: 200%;
+		}
+		h4 {
+			line-height: 200%;
+		}
+		.container{
+			display: flex;
+		  justify-content: center;
+		  align-items: center;
+		}
+		.menu {
+		  display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+		.new {
+			place-content: bottom;
+		}
+		
+		input[type=text] {
+			width: 20%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			 /*box-sizing: border-box;*/
+			border: none;
+			background-color: #38033f;
+			color: palevioletred;
+			
+		  
+		  }
+		
+		::placeholder{
+			color: rgb(229, 151, 177);
+		}
+		
+	</style>
+	<head>
+		<title>Tic Tac Toe</title>
+		<link rel="stylesheet" href="main.css" type="text/css">
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+		<!--<link rel="stylesheet" href="node_modules/skeleton-css/css/skeleton.css">-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sora">
+		<!-- <meta charset="UTF-8"> -->
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+	<!-- Style Sheet -->
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/> 
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+	</head>
+	<body class = "formPage" id = "bodyTag">
+		<div class="container">
+			<div class="menu justify-content-center align-items-center"> 
+				<div class="area" >
+					<ul class="circles">
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+					</ul>
+				</div>
+
+			    <h1 class = "heading_1">TIC TAC TOE </h1>
+                <h2>How To Play</h2>
+					<h3>» You can play the game with your friend or with any random player.</h3>
+					<h3>» Player1: If you want to play with your friend then create a game and tick that invite-only checkbox.</h3>
+					<h3>» A room-ID  will be displayed on your screen, share that with your friend.</h3> 
+					<h3>» If you want to play with any random player then select "Join random game" button. 
+						<br>After selecting the button, a dropdown menu will be visible. Select any room from there.</h3>
+					<h3>» If you want to join a game with your friend, then select "Join with a friend". </h3>
+				<h4>Create a new Game</h4>
+				<!-- <br> -->
+				<input type="text" name="name" id="nameNew" placeholder="Enter your name" required>
+
+			   <!-- <checkbox id="invite_only">Invite-Only Variable</checkbox> -->
+			   <input type="checkbox" id="invite_only" name="invite_only">
+			   <label for="invite_only" class = "label_invite" >Invite-Only</label>
+
+				<button id = "new" class = "btns">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				 New Game</button>
+				
+				<h4 class="join_existing_game">Join an existing game</h4>
+				
+				<input type="text" name="name" id="nameJoin" placeholder="Enter your name" required> 
+				<input type="radio" id="radio_friend" name="drone" value="friend" style = "display: block;" onclick="show_radio_friend()">
+				<label for="radio_friend" class = "label_friend" >Join with a friend</label>
+
+				<input type="radio" id="radio_random" name="drone" value="random" style = "display: block;" onclick="show_radio_random()">
+				<label for="radio_random" class ="label_random" >Join Random Game</label>
+
+				<input type="text" name="room" id="room" placeholder="Enter Game ID" style = "display: none;" required> 
+			
+				<select id="room_dropdown" style = "display: none;">
+					<option>Select Active Room</option>
+				</select>
+				<button id = "join" class = "btns">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				Join Game</button>
+			</div>
+			 
+			 <div class = "gameBoardcontainer">
+				<button id = "end" class = end_game >
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>End Game</button>
+			<div class="gameBoard">
+				<p id = "leftOne">Click on end game button to end the game</p>
+				<p id = "text"> Tic Tac Toe </p>
+				<h2 id="userHello"></h2>
+				<h3 id="turn"></h3>
+				 <!-- <audio controls>  -->
+					<embed src="Spring_Ikson_No_Copyright_Music_50k.mp3" autostart class="embed" hidden="true" loop = "true"></embed>
+					<!-- <embed src="Spring_Ikson_No_Copyright_Music_50k.mp3" autostart class="embed"></embed> -->
+					<!-- <div class = "audio" style="display:none;"></div> -->
+					<table class="audio"></table>
+				  <!-- </audio> -->
+				<table class="center">
+					<tr>
+						<td><button class="tile" id="button_00"></button></td>
+						<td><button class="tile" id="button_01"></button></td>
+						<td><button class="tile" id="button_02"></button></td>
+					</tr>
+					<tr>
+						<td><button class="tile" id="button_10"></button></td>
+						<td><button class="tile" id="button_11"></button></td>
+						<td><button class="tile" id="button_12"></button></td>
+					</tr>
+					<tr>
+						<td><button class="tile" id="button_20"></button></td>
+						<td><button class="tile" id="button_21"></button></td>
+						<td><button class="tile" id="button_22"></button></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+			<!--NEW  DIV CLASS FOR WINNER DECLARATION-->
+			<div class = "winner" style="display: none;">
+				<img src = "star3.gif" height = "190px" width = "190px" class="popup_1"/>
+			 <!-- <h1 id = "congrats" class = "styling"  style = "font-size: 100px; display: inline;">Congratulations</h1> -->
+			 <h1 id = "congrats" class = "styling"  style = "font-size: 100px; display: inline;"></h1>  
+				<img src = "star3.gif" height = "190px" width = "190px" class = "popup_2" />
+				<!-- <h2 id = "win_name" class = "winnername" style = "font-size: 100px; display: inline;" ></h2> -->
+				<h2 class = "winnername" ></h2>
+				<!-- <div class="box" id="box"></div>  -->
+				<div class="wrapper">
+					<input type="radio" name="rate" id="star-1">
+					<input type="radio" name="rate" id="star-2">
+					<input type="radio" name="rate" id="star-3">
+					<input type="radio" name="rate" id="star-4">
+					<input type="radio" name="rate" id="star-5">
+					<div class="content">
+					  <div class="outer">
+						<div class="emojis">
+						  <li class="slideImg"><img src="emoji-1.png" alt=""></li>
+						  <li><img src="emoji-2.png" alt=""></li>
+						  <li><img src="emoji-3.png" alt=""></li>
+						  <li><img src="emoji-4.png" alt=""></li>
+						  <li><img src="emoji-5.png" alt=""></li>
+						</div>
+					  </div>
+					  <div class="stars">
+						<label for="star-1" class="star-1 fas fa-star"></label>
+						<label for="star-2" class="star-2 fas fa-star"></label>
+						<label for="star-3" class="star-3 fas fa-star"></label>
+						<label for="star-4" class="star-4 fas fa-star"></label>
+						<label for="star-5" class="star-5 fas fa-star"></label>
+					  </div>
+					</div>
+					<div class="footer">
+					  <span class="text"></span>
+					  <span class="numb"></span>
+					</div>
+				  </div>
+				  <img src = "balloons.png" class = "balloon_1"/>
+				  <img src = "minion.gif" class = "minion"/>
+				  <img src = "donut.gif" class = "donut" />
+				  <img src = "balloons.png" class = "balloon_2"/>
+				  <!-- <a href = "bg.html">
+					  <button class = "btn_exit">Exit</button>
+				  </a> -->
+				  <a href = "bg.html"> 
+					<button id = "exit" class = "btn_exit"> 
+					   <span></span>
+					   <span></span>
+					   <span></span>
+					   <span></span>
+				   Exit</button>
+				 </a> >
+				</div>
+			<!--end of div of winner class -->
+
+		</div>
+	<!-- </div> -->
+		<!--<script src="node_modules/jquery/dist/jquery.min.js"></script> -->
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<script src="game.js"></script>
+		<script type="text/javascript">
+			window.addEventListener('beforeunload', function (e) {
+				e.preventDefault();
+				e.returnValue = 'Are you sure you want to leave';
+			});
+			// var radio_friend = $('#radio_friend').is(':checked');
+      		// var radio_random = $('#radio_friend').is(':checked');
+			// console.log('radio friend',radio_friend);
+			// console.log('radio random',radio_random);
+			// if (radio_friend) {
+			// 	$('#radio_friend').css('display', 'block');
+			// }
+			// if (radio_random) {
+			// 	$('#radio_random').css('display', 'block');
+			// }
+			function show_radio_friend(){
+				$('#room').css('display', 'block');
+				$('#room_dropdown').css('display', 'none');
+			}
+			function show_radio_random(){
+				$('#room').css('display', 'none');
+				$('#room_dropdown').css('display', 'block');
+			}
+		</script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+		
+	</body>
+</html>
